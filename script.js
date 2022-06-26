@@ -62,19 +62,30 @@ function removeHoverEventListener(){
     gridBoxes.forEach(box => box.removeEventListener('mouseover', changeBackground));
 }
 
+
 let rainbow = false; 
 let shading = false;
 let eraser = false;
 const documentBody = document.querySelector('body')
 
+
 // Create a grid 
 createGrid(16,16,500,500);
 
+//Event Listener for Slider
+const myRange = document.getElementById('myRange');
+const displayRange = document.getElementById('rangeDisplay');
+myRange.addEventListener('change', () => {
+    document.querySelector('.gridContainer').innerHTML = ''
+    createGrid(myRange.value, myRange.value, 500, 500);
+    displayRange.textContent = `${myRange.value} x ${myRange.value}`
+})
+
 // Start hover listener on mousedown
-documentBody.addEventListener('mousedown', addHoverEventListener)
+documentBody.addEventListener('mousedown', addHoverEventListener);
 
 // Stop hover listener on mouseup
-documentBody.addEventListener('mouseup', removeHoverEventListener)
+documentBody.addEventListener('mouseup', removeHoverEventListener);
 
 // Color Mode
 const colorBtn = document.getElementById('colorButton');
@@ -82,7 +93,7 @@ colorBtn.addEventListener('click', () => {
     rainbow = false;
     shading = false;
     eraser = false;
-})
+});
 
 // Rainbow Mode 
 const rainbowBtn = document.getElementById('rainbowButton');
@@ -90,7 +101,7 @@ rainbowBtn.addEventListener('click', () => {
     rainbow = true;
     shading = false;
     eraser = false;
-})
+});
 
 // Shading
 const shadingBtn = document.getElementById('shadingButton');
@@ -98,7 +109,7 @@ shadingBtn.addEventListener('click', () => {
     shading = true;
     rainbow = false;
     eraser = false;
-})
+});
 
 // Eraser
 const eraserBtn = document.getElementById('eraser');
@@ -106,8 +117,8 @@ eraserBtn.addEventListener('click', () => {
     eraser = true;
     shading = false;
     rainbow = false;
-})
+});
 
 // Fing ClearBtn and Clear grid when pressed 
 const clearBtn = document.getElementById('clear');
-clearBtn.addEventListener('click',clearGrid)
+clearBtn.addEventListener('click',clearGrid);
