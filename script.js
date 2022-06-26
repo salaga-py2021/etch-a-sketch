@@ -34,7 +34,20 @@ function changeBackground(gridBox){
 }
 
 function clearGrid(){
+    const gridBoxes = document.querySelectorAll('.gridBox');
     gridBoxes.forEach(box => box.style.backgroundColor = 'white')
+}
+
+function addHoverEventListener(){
+    console.log('MouseDown Sucessful')
+    const gridBoxes = document.querySelectorAll('.gridBox');
+    gridBoxes.forEach(box => box.addEventListener('mouseover', changeBackground));
+}
+
+function removeHoverEventListener(){
+    console.log('MouseUp Sucessful')
+    const gridBoxes = document.querySelectorAll('.gridBox');
+    gridBoxes.forEach(box => box.removeEventListener('mouseover', changeBackground));
 }
 
 let rainbow = false; 
@@ -45,9 +58,11 @@ const documentBody = document.querySelector('body')
 // Create a grid 
 createGrid(16,16,500,500);
 
-// Detect on Hover
-const gridBoxes = document.querySelectorAll('.gridBox');
-gridBoxes.forEach(box => box.addEventListener('mouseover', changeBackground));
+// Start hover listener on mousedown
+documentBody.addEventListener('mousedown', addHoverEventListener)
+
+// Stop hover listener on mouseup
+documentBody.addEventListener('mouseup', removeHoverEventListener)
 
 // Color Mode
 const colorBtn = document.getElementById('colorButton');
