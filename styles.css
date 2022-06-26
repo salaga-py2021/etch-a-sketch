@@ -1,0 +1,7 @@
+.rowContainer{
+    display: flex;
+}
+
+.gridContainer {
+    border: solid black;
+}
