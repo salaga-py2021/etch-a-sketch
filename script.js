@@ -27,6 +27,20 @@ function changeBackground(gridBox){
     else if (eraser){
         this.style.backgroundColor = 'white';
     }
+    else if (shading){
+        let currentColor = this.style.backgroundColor.slice(4,-1).split(',');
+        currentColor = currentColor.map(Number);
+        if (currentColor.length == 1){
+            currentColor = [255,255,255];
+        }
+        console.log('currentColor',currentColor);
+        let setColor = [];
+        for (let color of currentColor){
+            setColor.push(Math.floor(Number(color)*0.90));
+        }
+        console.log('toSet', setColor);
+        this.style.backgroundColor = 'rgb(' + setColor.join(',') + ')';
+    }
     else{
         const colorPicker = document.querySelector('.buttons > input');
         this.style.backgroundColor = colorPicker.value; 
@@ -39,13 +53,11 @@ function clearGrid(){
 }
 
 function addHoverEventListener(){
-    console.log('MouseDown Sucessful')
     const gridBoxes = document.querySelectorAll('.gridBox');
     gridBoxes.forEach(box => box.addEventListener('mouseover', changeBackground));
 }
 
 function removeHoverEventListener(){
-    console.log('MouseUp Sucessful')
     const gridBoxes = document.querySelectorAll('.gridBox');
     gridBoxes.forEach(box => box.removeEventListener('mouseover', changeBackground));
 }
@@ -76,12 +88,24 @@ colorBtn.addEventListener('click', () => {
 const rainbowBtn = document.getElementById('rainbowButton');
 rainbowBtn.addEventListener('click', () => {
     rainbow = true;
+    shading = false;
+    eraser = false;
+})
+
+// Shading
+const shadingBtn = document.getElementById('shadingButton');
+shadingBtn.addEventListener('click', () => {
+    shading = true;
+    rainbow = false;
+    eraser = false;
 })
 
 // Eraser
 const eraserBtn = document.getElementById('eraser');
 eraserBtn.addEventListener('click', () => {
     eraser = true;
+    shading = false;
+    rainbow = false;
 })
 
 // Fing ClearBtn and Clear grid when pressed 

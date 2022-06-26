@@ -5,3 +5,7 @@
 .gridContainer {
     border: solid black;
 }
+
+.gridBox{
+    background-color: rgb(255, 255, 255);
+}
