@@ -42,7 +42,7 @@ function changeBackground(gridBox){
         this.style.backgroundColor = 'rgb(' + setColor.join(',') + ')';
     }
     else{
-        const colorPicker = document.querySelector('.buttons > input');
+        const colorPicker = document.querySelector('#buttonsContainer > input');
         this.style.backgroundColor = colorPicker.value; 
     }
 }

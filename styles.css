@@ -1,9 +1,50 @@
-.rowContainer{
+body {
     display: flex;
+    flex-direction: column;
+    background-color: #FFFFFA;
+    font-family: 'Staatliches', cursive;
+}
+
+header {
+    font-size: xxx-large;
+    font-weight: bolder;
+    text-align: center;
+    margin: 40px;
+    color: #080705;
+}
+
+#mainBody {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap-reverse;
+
+}
+
+#buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 80px 50px -250px;
+}
+
+button{
+    height: 50px;
+    width: 200px;
+    border: 0cm;
+    background-color: #40434E;
+    color: #FFFFFA;
+
 }
 
 .gridContainer {
     border: solid black;
+}
+
+.rowContainer{
+    display: flex;
 }
 
 .gridBox{

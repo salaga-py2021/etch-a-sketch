@@ -10,20 +10,22 @@
 </head>
 <body>
     <header>Etch-a-Sketch</header>
-    <div class = 'buttons'> 
-        <input onchange="colorSelected(this)" type="color">
-        <button id = 'colorButton'> Color Mode </button>
-        <button id = 'rainbowButton'> Rainbow Mode </button>
-        <button id = 'shadingButton'> Shading </button>
-        <button id = 'eraser'> Eraser </button> 
-        <button id = 'clear'> Clear </button> 
-        <div class='slideContainer'>
-            <p id = 'rangeDisplay'> 16 x 16 </p>
-            <input type='range' min='1' max='100' value='16' class='slider' id='myRange'>
+    <div id = 'mainBody'>
+        <div id = 'buttonsContainer'> 
+            <input onchange="colorSelected(this)" type="color">
+            <button id = 'colorButton'> Color Mode </button>
+            <button id = 'rainbowButton'> Rainbow Mode </button>
+            <button id = 'shadingButton'> Shading </button>
+            <button id = 'eraser'> Eraser </button> 
+            <button id = 'clear'> Clear </button> 
+            <div class='slideContainer'>
+                <p id = 'rangeDisplay'> 16 x 16 </p>
+                <input type='range' min='1' max='100' value='16' class='slider' id='myRange'>
+            </div>
         </div>
-    </div>
-    <div class = 'gridContainer' id = 'gridContainer'> 
-        <!-- To Do: Add JavaScript grid here that's nxn -->
+        <div class = 'gridContainer' id = 'gridContainer'> 
+            <!-- To Do: Add JavaScript grid here that's nxn -->
+        </div>
     </div>
 </body>
 </html>
