@@ -34,13 +34,16 @@ button{
     height: 50px;
     width: 200px;
     border: 0cm;
-    background-color: #40434E;
-    color: #FFFFFA;
-
+    border: solid #40434E;
+    background-color: #FFFFFA;
+    color: black;
+    border-radius: 8px;
 }
 
 .gridContainer {
-    border: solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 500px;
+    width: 500px;
 }
 
 .rowContainer{
