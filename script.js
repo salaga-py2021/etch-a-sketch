@@ -1,8 +1,8 @@
-function createGrid(numOfHorizontalBoxes, numOfVerticalBoxes, 
-                    gridHeight, gridWidth){ 
+function createGrid(numOfHorizontalBoxes, numOfVerticalBoxes){ 
     const gridContainer = document.querySelector('.gridContainer');
-    gridContainer.style.height = `${gridHeight}px`;
-    gridContainer.style.width = `${gridWidth}px`
+    const gridContainerStyle = window.getComputedStyle(gridContainer, null);
+    let gridHeight = Number(gridContainerStyle.getPropertyValue('height').slice(0,-2));
+    let gridWidth = Number(gridContainerStyle.getPropertyValue('width').slice(0,-2));
     for (let i = 0; i<numOfVerticalBoxes; i++){
         const rowContainer = document.createElement('div');
         rowContainer.classList.add('rowContainer')
@@ -62,6 +62,33 @@ function removeHoverEventListener(){
     gridBoxes.forEach(box => box.removeEventListener('mouseover', changeBackground));
 }
 
+function highlightBtns(eraser, shading, rainbow){
+    if (eraser){
+        eraserBtn.classList.add('clicked');
+        colorBtn.classList.remove('clicked');
+        shadingBtn.classList.remove('clicked');
+        rainbowBtn.classList.remove('clicked');
+    }
+    else if (shading){
+        eraserBtn.classList.remove('clicked');
+        colorBtn.classList.remove('clicked');
+        shadingBtn.classList.add('clicked');
+        rainbowBtn.classList.remove('clicked');
+    }
+    else if (rainbow){
+        eraserBtn.classList.remove('clicked');
+        colorBtn.classList.remove('clicked');
+        shadingBtn.classList.remove('clicked');
+        rainbowBtn.classList.add('clicked');
+    }
+    else {
+        eraserBtn.classList.remove('clicked');
+        colorBtn.classList.add('clicked');
+        shadingBtn.classList.remove('clicked');
+        rainbowBtn.classList.remove('clicked');
+    }
+}
+
 
 let rainbow = false; 
 let shading = false;
@@ -70,16 +97,16 @@ const documentBody = document.querySelector('body')
 
 
 // Create a grid 
-createGrid(16,16,500,500);
+createGrid(16,16);
 
 //Event Listener for Slider
 const myRange = document.getElementById('myRange');
 const displayRange = document.getElementById('rangeDisplay');
-myRange.addEventListener('change', () => {
+myRange.oninput = function () {
     document.querySelector('.gridContainer').innerHTML = ''
-    createGrid(myRange.value, myRange.value, 500, 500);
-    displayRange.textContent = `${myRange.value} x ${myRange.value}`
-})
+    createGrid(myRange.value, myRange.value);
+    displayRange.innerHTML = `${myRange.value} x ${myRange.value}`
+}
 
 // Start hover listener on mousedown
 documentBody.addEventListener('mousedown', addHoverEventListener);
@@ -93,6 +120,7 @@ colorBtn.addEventListener('click', () => {
     rainbow = false;
     shading = false;
     eraser = false;
+    highlightBtns(eraser, shading, rainbow)
 });
 
 // Rainbow Mode 
@@ -101,6 +129,7 @@ rainbowBtn.addEventListener('click', () => {
     rainbow = true;
     shading = false;
     eraser = false;
+    highlightBtns(eraser, shading, rainbow)
 });
 
 // Shading
@@ -109,6 +138,7 @@ shadingBtn.addEventListener('click', () => {
     shading = true;
     rainbow = false;
     eraser = false;
+    highlightBtns(eraser, shading, rainbow)
 });
 
 // Eraser
@@ -117,8 +147,10 @@ eraserBtn.addEventListener('click', () => {
     eraser = true;
     shading = false;
     rainbow = false;
+    highlightBtns(eraser, shading, rainbow)
 });
 
+highlightBtns(eraser, shading, rainbow);
 // Fing ClearBtn and Clear grid when pressed 
 const clearBtn = document.getElementById('clear');
 clearBtn.addEventListener('click',clearGrid);
