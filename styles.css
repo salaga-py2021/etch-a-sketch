@@ -25,6 +25,28 @@ header {
 
 }
 
+#colorSelect {
+    align-self: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 100px;
+    height: 100px;
+    border: none;
+    cursor: pointer;
+}
+
+#colorSelect::-webkit-color-swatch {
+    border-radius: 50%;
+    border: 2px solid #40434E;
+}
+
+#colorSelect::-moz-color-swatch {
+    border-radius: 50%;
+    border: 2px solid #40434E;
+}
+
 #buttonsContainer {
     display: flex;
     flex-direction: column;
@@ -89,7 +111,7 @@ button{
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #04AA6D;
+    background: #912F40;
     cursor: pointer;
   }
 
